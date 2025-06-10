@@ -33,33 +33,32 @@ const OrderCard = ({ order }) => {
     return (
         <Card
             sx={{
-                height: '100%',
                 width: '100%',
-                maxWidth: 500,
                 borderRadius: 4,
                 display: 'flex',
                 flexDirection: 'column',
-                justifyContent: 'space-between',
-                overflow: 'hidden',
                 boxShadow: 6,
                 backdropFilter: 'blur(4px)',
                 transition: '0.3s',
-                '&:hover': { transform: 'scale(1.02)' },
+                '&:hover': { transform: 'scale(1.01)' },
+                overflow: 'hidden',
             }}
         >
-
-            <Box sx={{ position: 'relative' }}>
+            <Box sx={{ position: 'relative', width: '100%', height: 300 }}>
                 {order.imageUrl ? (
                     <CardMedia
                         component="img"
-                        height="150"
-                        width={200} 
                         image={order.imageUrl}
                         alt={order.ordername}
-                        sx={{ objectFit: 'cover' }}
+                        sx={{
+                            width: '100%',
+                            height: '100%',
+                            objectFit: 'cover',
+                            backgroundColor: '#f0f0f0',
+                        }}
                     />
                 ) : (
-                    <Box sx={{ height: 220, backgroundColor: '#ddd' }} />
+                    <Box sx={{ width: '100%', height: '100%', backgroundColor: '#ccc' }} />
                 )}
 
                 <Avatar
@@ -68,9 +67,9 @@ const OrderCard = ({ order }) => {
                         position: 'absolute',
                         top: 16,
                         left: 16,
-                        width: 56,
-                        height: 56,
-                        fontSize: 24,
+                        width: 64,
+                        height: 64,
+                        fontSize: 26,
                         border: '2px solid white',
                     }}
                 >
@@ -80,20 +79,20 @@ const OrderCard = ({ order }) => {
                 <Chip
                     label="ממתין"
                     color="warning"
-                    size="small"
+                    size="medium"
                     sx={{
                         position: 'absolute',
                         top: 16,
                         right: 16,
                         fontWeight: 'bold',
-                        fontSize: '0.75rem',
+                        fontSize: '0.8rem',
                         bgcolor: 'rgba(255,183,77,0.9)',
                         color: '#fff',
                     }}
                 />
             </Box>
 
-            <CardContent sx={{ backgroundColor: 'rgba(255,255,255,0.9)', textAlign: 'center' }}>
+            <CardContent sx={{ backgroundColor: 'rgba(255,255,255,0.95)', textAlign: 'center', px: 3, py: 2 }}>
                 <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
                     {order.ordername}
                 </Typography>
@@ -102,7 +101,7 @@ const OrderCard = ({ order }) => {
                 </Typography>
             </CardContent>
 
-            <CardActions disableSpacing sx={{ px: 2, py: 1, bgcolor: 'rgba(255,255,255,0.7)' }}>
+            <CardActions disableSpacing sx={{ px: 2, py: 1, bgcolor: 'rgba(255,255,255,0.8)' }}>
                 <IconButton>
                     <FavoriteIcon sx={{ color: '#FF4081' }} />
                 </IconButton>
@@ -117,7 +116,7 @@ const OrderCard = ({ order }) => {
             </CardActions>
 
             <Collapse in={expanded} timeout="auto" unmountOnExit>
-                <Box sx={{ px: 2, pb: 2, bgcolor: 'rgba(255,255,255,0.8)' }}>
+                <Box sx={{ px: 3, pb: 3, bgcolor: 'rgba(255,255,255,0.9)' }}>
                     <Typography variant="body2" sx={{ color: '#444' }}>
                         ✉️ לקוח: {order.customer || 'לא ידוע'}
                         <br />

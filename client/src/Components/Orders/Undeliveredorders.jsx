@@ -5,9 +5,8 @@ import { useSelector } from 'react-redux';
 import {
   Box,
   Typography,
-  Grid,
   CircularProgress,
-  useMediaQuery
+  useMediaQuery,
 } from '@mui/material';
 import OrderCard from './OrderCard';
 
@@ -42,44 +41,66 @@ const Undeliveredorders = () => {
 
   return (
     <Box
-      className="orders-background"
       sx={{
-        backgroundImage: `url('/images/bg-light.jpg')`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
+        width: '100%',
         minHeight: '100vh',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        backgroundColor: 'transparent',
         p: isMobile ? 2 : 6,
+        m: 0,
+        border: 'none',
+        boxShadow: 'none',
+        zIndex: 1,
       }}
     >
       <Typography
         variant={isMobile ? 'h5' : 'h4'}
-        align="center"
         sx={{
-          fontWeight: 'bold',
+          fontWeight: 800,
+          color: '#2e7d32',
+          textShadow: '1px 1px 3px rgba(0,0,0,0.3)',
           mb: 4,
-          color: '#fff',
-          textShadow: '1px 1px 3px #000',
+          fontFamily: 'Rubik, sans-serif',
+          textAlign: 'center',
+          width: '100%',
+          maxWidth: 600,
         }}
       >
         הזמנות שלא נלקחו מעל 10 דקות
       </Typography>
 
       {loading ? (
-        <Box sx={{ display: 'flex', justifyContent: 'center', mt: 4 }}>
-          <CircularProgress color="secondary" />
-        </Box>
+        <CircularProgress color="success" />
       ) : orders.length === 0 ? (
-        <Typography variant="h6" align="center" color="#eee">
+        <Typography
+          variant="h6"
+          sx={{
+            mt: 3,
+            color: '#5d4037',
+            textShadow: '1px 1px 2px rgba(255,255,255,0.6)',
+            textAlign: 'center',
+            width: '100%',
+            maxWidth: 600,
+          }}
+        >
           אין הזמנות ממתינות להצגה
         </Typography>
       ) : (
-        <Grid container spacing={4} justifyContent="center">
+        <Box
+          sx={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
+            gap: 3,
+            width: '100%',
+            maxWidth: 1200,
+          }}
+        >
           {orders.map((order, index) => (
-            <Grid item key={index} xs={12} sm={6} md={4} lg={3}>
-              <OrderCard order={order} />
-            </Grid>
+            <OrderCard key={index} order={order} />
           ))}
-        </Grid>
+        </Box>
       )}
     </Box>
   );
